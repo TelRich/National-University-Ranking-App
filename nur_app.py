@@ -7,7 +7,7 @@ PROJECT: NATIONAL UNIVERSITY RANK APP
 
 import pandas as pd
 import streamlit as st
-import plotly.express as px
+# import plotly.express as px
 
 # Setting th epage size and title
 st.set_page_config(layout='centered', page_title='National University Rank App')
