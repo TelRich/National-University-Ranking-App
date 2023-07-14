@@ -22,3 +22,12 @@ their criteria in terms of tuition, graduation rate, location, and rank.
   </center>""", unsafe_allow_html=True)
 
 st.image('https://storage.googleapis.com/kaggle-datasets-images/2700487/4646217/3150dd9c507c09c6fe0d7e38c9cef15d/dataset-cover.png?t=2022-12-03-17-10-45')
+
+with st.expander('Top Ranking School'):
+  st.text('In Progres.......')
+
+with st.expander('School Selection'):
+  st.text('In Progres.......')
+  
+with st.expander('School Recommender'):
+  st.text('In Progres.......')
