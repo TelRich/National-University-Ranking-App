@@ -20,3 +20,5 @@ st.markdown("""<center>
 Developing a searchable database to help high school students identify colleges that match 
 their criteria in terms of tuition, graduation rate, location, and rank.
   </center>""", unsafe_allow_html=True)
+
+st.image('https://storage.googleapis.com/kaggle-datasets-images/2700487/4646217/3150dd9c507c09c6fe0d7e38c9cef15d/dataset-cover.png?t=2022-12-03-17-10-45')
