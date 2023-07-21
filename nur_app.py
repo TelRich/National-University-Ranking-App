@@ -25,7 +25,7 @@ with st.expander(':violet[PROJECT TITLE]', expanded=True):
 # App Image
 st.markdown("""
 <p align="center">
-<img width="1050" height="500" src="https://storage.googleapis.com/kaggle-datasets-images/2700487/4646217/3150dd9c507c09c6fe0d7e38c9cef15d/dataset-cover.png?t=2022-12-03-17-10-45">
+<img width="900" height="500" src="https://storage.googleapis.com/kaggle-datasets-images/2700487/4646217/3150dd9c507c09c6fe0d7e38c9cef15d/dataset-cover.png?t=2022-12-03-17-10-45">
 </p>
 """, unsafe_allow_html=True)
 
