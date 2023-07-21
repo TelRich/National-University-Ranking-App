@@ -72,7 +72,6 @@ with st.expander('Top Ranking School'):
     st.plotly_chart(fig2, use_container_width=True)
     st.plotly_chart(fig4, use_container_width=True)
 
-
 with st.expander('School Selection'):
   st.text('In Progres.......')
   
