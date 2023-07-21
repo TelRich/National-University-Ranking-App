@@ -63,7 +63,7 @@ fig4 = px.bar(top_ins, y="year", x="name", text_auto=True,height=400, width=550,
              labels={'name':'', 'year': ''}, title="Oldest Universities")
 fig4.update_yaxes(showticklabels=False)
 
-with st.expander('Top Ranking School'):
+with st.expander('Top Ranking School', expanded=True):
   col1, col2 = st.columns([3,3], gap='small')
   with col1:
     st.plotly_chart(fig1, use_container_width=True)
