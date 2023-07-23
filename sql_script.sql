@@ -13,7 +13,7 @@ Select a.name, b.tuiton fee,
 From South a
 Join Rank b
 Where rank_id = rank_id
-Order by  tuition fee
+Order by  tuition fee DESC
 LIMIT 5
 
 
