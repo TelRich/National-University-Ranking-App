@@ -9,6 +9,7 @@ PROJECT: NATIONAL UNIVERSITY RANK APP
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+import psycopg2
 
 # Setting th epage size and title
 st.set_page_config(layout='wide', page_title='National University Rank App')
@@ -41,11 +42,28 @@ def load_data():
   df = pd.read_csv('dataset/cleaned_nur_data.csv', index_col=0)
   return df
 
-# @st.cache_data
-# def connect_db():
-#   username = st.secrets
+@st.cache_data
+def connect_db():
+  username = st.secrets['user']
+  password = st.secrets['pw']
+  host = 'telrichserver.postgres.database.azure.com'
+  database = 'nur_db'
+  port = '5432'
+  sslmode = 'require'
+  conn_str = f'postgresql://{username}:{password}@{host}:{port}/{database}?sslmode={sslmode}'
+  return conn_str
   
 df_nur = load_data()
+conn = psycopg2.connect(connect_db())
+cur = conn.cursor()
+
+five = """
+SELECT * FROM nur_app.northeast LIMIT 5
+"""
+
+df = pd.read_sql_query(five, conn)
+df
+
 
 fig1 = px.bar(df_nur[:3].sort_values('rank', ascending=False), y="rank", x="name", text_auto=True,height = 400, width= 550, labels={'name':'', 'rank':''})
 fig1.update_layout(xaxis={"categoryorder": "total ascending"}, title_text="Top Universities by Rank")
