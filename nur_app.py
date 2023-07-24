@@ -40,6 +40,10 @@ st.sidebar.markdown("""
 def load_data():
   df = pd.read_csv('dataset/cleaned_nur_data.csv', index_col=0)
   return df
+
+# @st.cache_data
+# def connect_db():
+#   username = st.secrets
   
 df_nur = load_data()
 
@@ -72,9 +76,18 @@ with st.expander('Top Ranking School', expanded=True):
     st.plotly_chart(fig2, use_container_width=True)
     st.plotly_chart(fig4, use_container_width=True)
 
-with st.expander('School Selection'):
+with st.expander('Northeast Selection'):
   st.text('In Progres.......')
   
+with st.expander('Midwest Selection'):
+  st.text('In Progres.......')  
+  
+with st.expander('South Selection'):
+  st.text('In Progres.......')  
+  
+with st.expander('West Selection'):
+  st.text('In Progres.......')
+
 with st.expander('School Recommender'):
   st.text('In Progres.......')
   
