@@ -107,16 +107,16 @@ with st.expander('Northeast Selection', expanded=True):
   df = pd.read_sql_query(top_rank_user_state, conn)
   df
   
-with st.expander('Midwest Selection'):
+with st.expander('Midwest Selection', expanded=True):
   st.text('In Progres.......')  
   
-with st.expander('South Selection'):
+with st.expander('South Selection', expanded=True):
   st.text('In Progres.......')  
   
-with st.expander('West Selection'):
+with st.expander('West Selection', expanded=True):
   st.text('In Progres.......')
 
-with st.expander('School Recommender'):
+with st.expander('School Recommender', expanded=True):
   st.text('In Progres.......')
   
   
