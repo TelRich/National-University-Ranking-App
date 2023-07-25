@@ -26,7 +26,7 @@ with st.expander(':violet[PROJECT TITLE]', expanded=True):
 # App Image
 st.markdown("""
 <p align="center">
-<img width="900" height="500" src="https://storage.googleapis.com/kaggle-datasets-images/2700487/4646217/3150dd9c507c09c6fe0d7e38c9cef15d/dataset-cover.png?t=2022-12-03-17-10-45">
+<img width="1000" height="500" src="https://storage.googleapis.com/kaggle-datasets-images/2700487/4646217/3150dd9c507c09c6fe0d7e38c9cef15d/dataset-cover.png?t=2022-12-03-17-10-45">
 </p>
 """, unsafe_allow_html=True)
 
@@ -57,13 +57,6 @@ df_nur = load_data()
 conn = psycopg2.connect(connect_db())
 cur = conn.cursor()
 
-five = """
-SELECT * FROM nur_app.northeast LIMIT 5
-"""
-
-df = pd.read_sql_query(five, conn)
-df
-
 
 fig1 = px.bar(df_nur[:3].sort_values('rank', ascending=False), y="rank", x="name", text_auto=True,height = 400, width= 550, labels={'name':'', 'rank':''})
 fig1.update_layout(xaxis={"categoryorder": "total ascending"}, title_text="Top Universities by Rank")
@@ -89,13 +82,30 @@ with st.expander('Top Ranking School', expanded=True):
   col1, col2 = st.columns([3,3], gap='small')
   with col1:
     st.plotly_chart(fig1, use_container_width=True)
-    st.plotly_chart(fig3, use_container_width=True)  
+    # st.plotly_chart(fig3, use_container_width=True)  
   with col2:
     st.plotly_chart(fig2, use_container_width=True)
-    st.plotly_chart(fig4, use_container_width=True)
+    # st.plotly_chart(fig4, use_container_width=True)
+    
+with st.expander('Not sure which region you fall into! Insert your state and find out', expanded=True):
+  all_states = df_nur['state'].unique().tolist() 
+  usr_state = st.selectbox('Select State', all_states)
+  state_reg = df_nur[df_nur['state'] == usr_state]['region'].iloc[0]
+  st.write(f'{usr_state} is in the {state_reg}')     
 
-with st.expander('Northeast Selection'):
-  st.text('In Progres.......')
+with st.expander('Northeast Selection', expanded=True):
+  ne_states = df_nur[df_nur['region']=='Northeast']['state'].unique().tolist() 
+  user_state = st.selectbox('Select State', ne_states)
+  top_rank_user_state = f"""
+  SELECT 
+    name,
+    location,
+    description
+  FROM nur_app.northeast
+  WHERE state_id = '{user_state}'
+  """
+  df = pd.read_sql_query(top_rank_user_state, conn)
+  df
   
 with st.expander('Midwest Selection'):
   st.text('In Progres.......')  
