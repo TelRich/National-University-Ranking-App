@@ -15,7 +15,7 @@ import psycopg2
 st.set_page_config(layout='wide', page_title='National University Rank App')
 
 # App Setup
-with st.expander(':violet[PROJECT TITLE]', expanded=True):
+with st.expander(':red[PROJECT TITLE]', expanded=True):
   st.markdown("<h1 style='text-align:center;'>National University Rank App</h1>", unsafe_allow_html=True)
   st.markdown("<h3 style='text-align:center;'>Research Idea</h3>", unsafe_allow_html=True)
   st.markdown("""<center>
@@ -37,6 +37,7 @@ st.sidebar.markdown("""
                     # [**Project Outline**](https://github.com/users/TelRich/projects/5)
                     """)
 
+# FUnction to load the cleaned data
 @st.cache_data
 def load_data():
   df = pd.read_csv('dataset/cleaned_nur_data.csv', index_col=0)
@@ -78,7 +79,7 @@ fig4 = px.bar(top_ins, y="year", x="name", text_auto=True,height=400, width=550,
              labels={'name':'', 'year': ''}, title="Oldest Universities")
 fig4.update_yaxes(showticklabels=False)
 
-with st.expander('Top Ranking School', expanded=True):
+with st.expander(':red[Top Ranking School]', expanded=True):
   col1, col2 = st.columns([3,3], gap='small')
   with col1:
     st.plotly_chart(fig1, use_container_width=True)
@@ -87,13 +88,14 @@ with st.expander('Top Ranking School', expanded=True):
     st.plotly_chart(fig2, use_container_width=True)
     # st.plotly_chart(fig4, use_container_width=True)
     
-with st.expander('Not sure which region you fall into! Insert your state and find out', expanded=True):
+with st.expander(':red[Region Search]', expanded=True):
+  st.text('Not sure which region you fall into! Insert your state and find out')
   all_states = df_nur['state'].unique().tolist() 
   usr_state = st.selectbox('Select State', all_states)
   state_reg = df_nur[df_nur['state'] == usr_state]['region'].iloc[0]
   st.write(f'{usr_state} is in the {state_reg}')     
 
-with st.expander('Northeast Selection', expanded=True):
+with st.expander(':red[Northeast Selection]', expanded=True):
   ne_states = df_nur[df_nur['region']=='Northeast']['state'].unique().tolist() 
   user_state = st.selectbox('Select State', ne_states)
   top_rank_user_state = f"""
@@ -107,16 +109,16 @@ with st.expander('Northeast Selection', expanded=True):
   df = pd.read_sql_query(top_rank_user_state, conn)
   df
   
-with st.expander('Midwest Selection', expanded=True):
+with st.expander(':red[Midwest Selection]', expanded=True):
   st.text('In Progres.......')  
   
-with st.expander('South Selection', expanded=True):
+with st.expander(':red[South Selection]', expanded=True):
   st.text('In Progres.......')  
   
-with st.expander('West Selection', expanded=True):
+with st.expander(':red[West Selection]', expanded=True):
   st.text('In Progres.......')
 
-with st.expander('School Recommender', expanded=True):
+with st.expander(':red[School Recommender]', expanded=True):
   st.text('In Progres.......')
   
   
