@@ -16,5 +16,19 @@ Where rank_id = rank_id
 Order by  tuition fee DESC
 LIMIT 5
 
+-- Top 5 schools by undergrad enrollment for midwest states
+SELECT md.name, r.undergrad_enrollment
+FROM midwest md
+INNER JOIN Rank r
+ON md.rank_id = r.rank_id
+ORDER BY r.undergrad_enrollment DESC
+LIMIT 5;
 
+-- Top 5 schools by undergrad enrollment for northeast states
+SELECT md.name, r.undergrad_enrollment
+FROM northeast md
+INNER JOIN Rank r
+ON md.rank_id = r.rank_id
+ORDER BY r.undergrad_enrollment DESC
+LIMIT 5;
 
