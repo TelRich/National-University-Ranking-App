@@ -97,17 +97,73 @@ with st.expander(':red[Region Search]', expanded=True):
 
 with st.expander(':red[Northeast Selection]', expanded=True):
   ne_states = df_nur[df_nur['region']=='Northeast']['state'].unique().tolist() 
-  user_state = st.selectbox('Select State', ne_states)
-  top_rank_user_state = f"""
-  SELECT 
-    name,
-    location,
-    description
-  FROM nur_app.northeast
-  WHERE state_id = '{user_state}'
+  col3, col4 = st.columns([3,3], gap='small')
+  n_rnk = """
+  SELECT n.name,
+  RANK() OVER (ORDER BY rank_num)
+  FROM nur_app.northeast n
+  JOIN nur_app.rank r
+  ON r.id = n.rank_id
+  ORDER BY rank_num
+  LIMIT 3
   """
-  df = pd.read_sql_query(top_rank_user_state, conn)
-  df
+  
+  n_fee = """
+  SELECT n.name, tuition_and_fees
+  FROM nur_app.northeast n
+  JOIN nur_app.rank r
+  ON r.id = n.rank_id
+  ORDER BY tuition_and_fees DESC
+  LIMIT 3
+  """
+  df1 = pd.read_sql_query(n_rnk, conn)
+  fig5 = px.bar(df1, y="rank", x="name", text_auto=True,height = 300, width= 550, labels={'name':'', 'rank':''})
+  fig5.update_layout(title_text="Top Universities by Rank")
+  fig5.update_yaxes(showticklabels=False)
+  with col3:
+    st.plotly_chart(fig5, use_container_width=True)
+  
+  df2 = pd.read_sql_query(n_fee, conn)
+  fig6 = px.bar(df2, y="tuition_and_fees", x="name", text_auto=True,height = 300, width= 550, labels={'name':'', 'tuition_and_fees':''})
+  fig6.update_layout(title_text="Universities by High Fees")
+  fig6.update_yaxes(showticklabels=False)
+  with col4:
+    st.plotly_chart(fig6, use_container_width=True)
+  
+  user_state = st.selectbox('Select State', ne_states)
+  col5, col6 = st.columns([3,3], gap='small')
+  top_rank_user_state = f"""
+  SELECT n.name, 
+  RANK() OVER (ORDER BY rank_num)
+  FROM nur_app.northeast n
+  JOIN nur_app.rank r
+  ON r.id = n.rank_id
+  WHERE state_id = '{user_state}'
+  ORDER BY rank_num
+  """
+  
+  top_fees_user_state = f"""
+  SELECT n.name, tuition_and_fees
+  FROM nur_app.northeast n
+  JOIN nur_app.rank r
+  ON r.id = n.rank_id
+  WHERE state_id = '{user_state}'
+  ORDER BY tuition_and_fees DESC
+  """
+  
+  df3 = pd.read_sql_query(top_rank_user_state, conn)
+  fig7 = px.bar(df3, y="rank", x="name", text_auto=True,height = 300, width= 550, labels={'name':'', 'rank':''})
+  fig7.update_layout(title_text=f"Top Universities by Rank in {user_state}")
+  fig7.update_yaxes(showticklabels=False)
+  with col5:
+    st.plotly_chart(fig7, use_container_width=True)
+    
+  df4 = pd.read_sql_query(top_fees_user_state, conn)
+  fig8 = px.bar(df4, y="tuition_and_fees", x="name", text_auto=True,height = 300, width= 550, labels={'name':'', 'tuition_and_fees':''})
+  fig8.update_layout(title_text=f"Universities by High Fees in {user_state}")
+  fig8.update_yaxes(showticklabels=False)
+  with col6:
+    st.plotly_chart(fig8, use_container_width=True)
   
 with st.expander(':red[Midwest Selection]', expanded=True):
   st.text('In Progres.......')  
