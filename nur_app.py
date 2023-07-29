@@ -140,6 +140,7 @@ with st.expander(':red[Northeast Selection]', expanded=True):
   ON r.id = n.rank_id
   WHERE state_id = '{user_state}'
   ORDER BY rank_num
+  LIMIT 3
   """
   
   top_fees_user_state = f"""
@@ -149,6 +150,7 @@ with st.expander(':red[Northeast Selection]', expanded=True):
   ON r.id = n.rank_id
   WHERE state_id = '{user_state}'
   ORDER BY tuition_and_fees DESC
+  LIMIT 3
   """
   
   df3 = pd.read_sql_query(top_rank_user_state, conn)
