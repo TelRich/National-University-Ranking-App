@@ -59,23 +59,24 @@ conn = psycopg2.connect(connect_db())
 cur = conn.cursor()
 
 
-fig1 = px.bar(df_nur[:3].sort_values('rank', ascending=False), y="rank", x="name", text_auto=True,height = 400, width= 550, labels={'name':'', 'rank':''})
-fig1.update_layout(xaxis={"categoryorder": "total ascending"}, title_text="Top Universities by Rank")
+fig1 = px.bar(df_nur[:3].sort_values('rank', ascending=False), y="rank", x="name", text_auto=True,height = 400, width= 550, labels={'name':'', 'rank':''},
+              color_discrete_sequence=px.colors.qualitative.Vivid)
+fig1.update_layout(title_text="Top Universities by Rank")
 fig1.update_yaxes(showticklabels=False)
 
 top_tf = df_nur.sort_values(by='tuition_and_fees', ascending=False)[:3]
 fig2 = px.bar(top_tf, y="tuition_and_fees", x="name", text_auto=True,height=400, width=550,
-             labels={'name':'', 'tuition_and_fees': ''})
+             labels={'name':'', 'tuition_and_fees': ''}, color_discrete_sequence=px.colors.qualitative.Vivid)
 fig2.update_layout(xaxis={"categoryorder": "total descending"}, title_text="Top Universities by Tuition and fees")
 fig2.update_yaxes(showticklabels=False)
 
 top_ins = df_nur.sort_values(by='in_state', ascending=False)[:3]
-fig3 = px.bar(top_ins, x="in_state", y="name", text_auto=True,height=400, width=550,
+fig3 = px.bar(top_ins, x="in_state", y="name", text_auto=True,height=400, width=550, color_discrete_sequence=px.colors.qualitative.Vivid,
              labels={'name':'', 'in_state': ''}, title="Top Universities by In-State fees")
 fig3.update_xaxes(showticklabels=False)
 
 top_ins = df_nur[df_nur['year'] != 0].sort_values(by='year')[:3]
-fig4 = px.bar(top_ins, y="year", x="name", text_auto=True,height=400, width=550,
+fig4 = px.bar(top_ins, y="year", x="name", text_auto=True,height=400, width=550, color_discrete_sequence=px.colors.qualitative.Vivid,
              labels={'name':'', 'year': ''}, title="Oldest Universities")
 fig4.update_yaxes(showticklabels=False)
 
@@ -168,7 +169,40 @@ with st.expander(':red[Northeast Selection]', expanded=True):
     st.plotly_chart(fig8, use_container_width=True)
   
 with st.expander(':red[Midwest Selection]', expanded=True):
-  st.text('In Progres.......')  
+  mw_states = df_nur[df_nur['region']=='Midwest']['state'].unique().tolist() 
+  col7, col8 = st.columns([3,3], gap='small')
+  mw_rnk = """
+  SELECT md.name,
+  RANK() OVER (ORDER BY rank_num)
+  FROM nur_app.midwest md
+  JOIN nur_app.rank r
+  ON r.id = md.rank_id
+  ORDER BY rank_num
+  LIMIT 3
+  """
+  
+  mw_fee = """
+  SELECT md.name, tuition_and_fees
+  FROM nur_app.midwest md
+  JOIN nur_app.rank r
+  ON r.id = md.rank_id
+  ORDER BY tuition_and_fees DESC
+  LIMIT 3
+  """
+  df5 = pd.read_sql_query(mw_rnk, conn)
+  fig9 = px.bar(df5, y="rank", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'rank':''})
+  fig9.update_layout(title_text="Top Universities by Rank")
+  fig9.update_yaxes(showticklabels=False)
+  with col7:
+    st.plotly_chart(fig9, use_container_width=True)
+  
+  df6 = pd.read_sql_query(mw_fee, conn)
+  fig10 = px.bar(df6, y="tuition_and_fees", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'tuition_and_fees':''})
+  fig10.update_layout(title_text="Universities by High Fees")
+  fig10.update_yaxes(showticklabels=False)
+  with col8:
+    st.plotly_chart(fig10, use_container_width=True)
+  
   
 with st.expander(':red[South Selection]', expanded=True):
   st.text('In Progres.......')  
