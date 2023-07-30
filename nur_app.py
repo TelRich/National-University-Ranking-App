@@ -59,7 +59,7 @@ conn = psycopg2.connect(connect_db())
 cur = conn.cursor()
 
 
-fig1 = px.bar(df_nur[:3].sort_values('rank', ascending=False), y="rank", x="name", text_auto=True,height = 400, width= 550, labels={'name':'', 'rank':''},
+fig1 = px.bar(df_nur[:3].sort_values('rank'), y="rank", x="name", text_auto=True,height = 400, width= 550, labels={'name':'', 'rank':''},
               color_discrete_sequence=px.colors.qualitative.Vivid)
 fig1.update_layout(title_text="Top Universities by Rank")
 fig1.update_yaxes(showticklabels=False)
