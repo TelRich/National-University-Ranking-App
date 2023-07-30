@@ -126,6 +126,7 @@ with st.expander(':red[Northeast Selection]', expanded=True):
   fig5 = px.bar(df1, y="rank", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'rank':''})
   fig5.update_layout(title_text="Top Universities by Rank")
   fig5.update_yaxes(showticklabels=False)
+  fig5.update_traces(textfont_color=text_color)
   with col3:
     st.plotly_chart(fig5, use_container_width=True)
   
@@ -133,6 +134,7 @@ with st.expander(':red[Northeast Selection]', expanded=True):
   fig6 = px.bar(df2, y="tuition_and_fees", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'tuition_and_fees':''})
   fig6.update_layout(title_text="Universities by High Fees")
   fig6.update_yaxes(showticklabels=False)
+  fig6.update_traces(textfont_color=text_color)
   with col4:
     st.plotly_chart(fig6, use_container_width=True)
   
@@ -163,6 +165,7 @@ with st.expander(':red[Northeast Selection]', expanded=True):
   fig7 = px.bar(df3, y="rank", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'rank':''})
   fig7.update_layout(title_text=f"Top Universities by Rank in {user_state}")
   fig7.update_yaxes(showticklabels=False)
+  fig7.update_traces(textfont_color=text_color)
   with col5:
     st.plotly_chart(fig7, use_container_width=True)
     
@@ -170,6 +173,7 @@ with st.expander(':red[Northeast Selection]', expanded=True):
   fig8 = px.bar(df4, y="tuition_and_fees", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'tuition_and_fees':''})
   fig8.update_layout(title_text=f"Universities by High Fees in {user_state}")
   fig8.update_yaxes(showticklabels=False)
+  fig8.update_traces(textfont_color=text_color)
   with col6:
     st.plotly_chart(fig8, use_container_width=True)
   
@@ -198,6 +202,7 @@ with st.expander(':red[Midwest Selection]', expanded=True):
   fig9 = px.bar(df5, y="rank", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'rank':''})
   fig9.update_layout(title_text="Top Universities by Rank")
   fig9.update_yaxes(showticklabels=False)
+  fig9.update_traces(textfont_color=text_color)
   with col7:
     st.plotly_chart(fig9, use_container_width=True)
   
@@ -205,6 +210,7 @@ with st.expander(':red[Midwest Selection]', expanded=True):
   fig10 = px.bar(df6, y="tuition_and_fees", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'tuition_and_fees':''})
   fig10.update_layout(title_text="Universities by High Fees")
   fig10.update_yaxes(showticklabels=False)
+  fig10.update_traces(textfont_color=text_color)
   with col8:
     st.plotly_chart(fig10, use_container_width=True)
   
