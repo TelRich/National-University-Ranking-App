@@ -26,6 +26,7 @@ ON md.rank_id = r.rank_id
 ORDER BY r.undergrad_enrollment DESC
 LIMIT 5;
 
+
 <<<<<<< HEAD
 -- kennedy
 -- show the top 5 schools by rank for west states. 
@@ -42,7 +43,10 @@ from nur_app.midwest as m
 inner join nur_app.rank as r
 on m.rank_id = r.id
 order by r.in_state Desc limit 5
+
 =======
+
+
 -- Top 5 schools by undergrad enrollment for northeast states
 SELECT md.name, r.undergrad_enrollment
 FROM northeast md
