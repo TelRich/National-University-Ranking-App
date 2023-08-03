@@ -18,7 +18,15 @@ Where rank_id = rank_id
 Order by  tuition fee DESC
 LIMIT 5
 
+-- Top 5 schools by undergrad enrollment for midwest states
+SELECT md.name, r.undergrad_enrollment
+FROM midwest md
+INNER JOIN Rank r
+ON md.rank_id = r.rank_id
+ORDER BY r.undergrad_enrollment DESC
+LIMIT 5;
 
+<<<<<<< HEAD
 -- kennedy
 -- show the top 5 schools by rank for west states. 
 select w.name, r.rank_num
@@ -34,4 +42,13 @@ from nur_app.midwest as m
 inner join nur_app.rank as r
 on m.rank_id = r.id
 order by r.in_state Desc limit 5
+=======
+-- Top 5 schools by undergrad enrollment for northeast states
+SELECT md.name, r.undergrad_enrollment
+FROM northeast md
+INNER JOIN Rank r
+ON md.rank_id = r.rank_id
+ORDER BY r.undergrad_enrollment DESC
+LIMIT 5;
+>>>>>>> 641872ba3853d929ce8baa32a97065170674cde4
 
