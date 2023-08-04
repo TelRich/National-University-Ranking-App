@@ -153,7 +153,8 @@ def inner_rank(reg):
   LIMIT 3
   """ 
   df3 = pd.read_sql_query(top_rank_user_state, conn)
-  fig3 = px.bar(df3, y="rank", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'rank':''})
+  fig3 = px.bar(df3, y="rank", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'rank':''},
+                color_discrete_sequence=px.colors.qualitative.G10)
   fig3.update_layout(title_text=f"Top Universities by Rank in {user_state}")
   fig3.update_yaxes(showticklabels=False)
   fig3.update_traces(textfont_color=text_color) 
@@ -170,7 +171,8 @@ def inner_fees(reg):
   LIMIT 3
   """
   df4 = pd.read_sql_query(top_fees_user_state, conn)
-  fig4 = px.bar(df4, y="tuition_and_fees", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'tuition_and_fees':''})
+  fig4 = px.bar(df4, y="tuition_and_fees", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'tuition_and_fees':''},
+                color_discrete_sequence=px.colors.qualitative.G10)
   fig4.update_layout(title_text=f"Universities by High Fees in {user_state}")
   fig4.update_yaxes(showticklabels=False)
   fig4.update_traces(textfont_color=text_color)
@@ -179,10 +181,10 @@ def inner_fees(reg):
 def tab_viz(df):
   table_trace = go.Table(
       header=dict(values=list(df.columns),
-                  fill_color='lightsteelblue',
+                  fill_color='steelblue',
               align='left'),
       cells=dict(values=[df[col] for col in df.columns],
-              fill_color='paleturquoise',
+              fill_color='royalblue',
               align='left')
   )
   fig5 = go.Figure(data=[table_trace])
