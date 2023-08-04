@@ -108,8 +108,17 @@ def region_df(reg):
   reg_fil = df_nur[df_nur['region']==reg]['state_full'].unique().tolist()
   return reg_fil
 
-def rank_plot(query_df):
-  df1 = pd.read_sql_query(query_df, conn)
+def rank_plot(reg):
+  reg_rnk = f"""
+  SELECT re.name,
+  RANK() OVER (ORDER BY rank_num)
+  FROM nur_app.{reg} re
+  JOIN nur_app.rank r
+  ON r.id = re.rank_id
+  ORDER BY rank_num
+  LIMIT 3
+  """
+  df1 = pd.read_sql_query(reg_rnk, conn)
   fig1 = px.bar(df1, y="rank", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'rank':''},
                 color_discrete_sequence=px.colors.qualitative.Vivid)
   fig1.update_layout(title_text="Top Universities by Rank")
@@ -117,8 +126,16 @@ def rank_plot(query_df):
   fig1.update_traces(textfont_color=text_color)
   return fig1
 
-def fees_plot(query_df):
-  df2 = pd.read_sql_query(query_df, conn)
+def fees_plot(reg):
+  reg_fee = f"""
+  SELECT re.name, tuition_and_fees
+  FROM nur_app.{reg} re
+  JOIN nur_app.rank r
+  ON r.id = re.rank_id
+  ORDER BY tuition_and_fees DESC
+  LIMIT 3
+  """
+  df2 = pd.read_sql_query(reg_fee, conn)
   fig2 = px.bar(df2, y="tuition_and_fees", x="name", text_auto=True,height = 350, width= 550, labels={'name':'', 'tuition_and_fees':''},
                 color_discrete_sequence=px.colors.qualitative.Vivid)
   fig2.update_layout(title_text="Universities by High Fees")
@@ -160,33 +177,58 @@ def tab_viz(df):
   )
   return fig5
 
+def top_instate_df(reg):
+  top_in_state = f"""
+  SELECT re.name, r.in_state
+  FROM nur_app.{reg} re
+  JOIN nur_app.rank r ON re.rank_id = r.id
+  WHERE state_id = (SELECT DISTINCT state_id FROM nur_app.state WHERE state_full = '{user_state}')
+  ORDER BY r.in_state DESC
+  LIMIT 5
+  """
+  tab1 = pd.read_sql_query(top_in_state, conn)
+  return tab1 
+
+def top_undrgrd_df(reg):
+  top_undrgrd = f"""
+  SELECT re.name, r.undergrad_enrollment
+  FROM nur_app.{reg} re
+  JOIN nur_app.rank r ON re.rank_id = r.id
+  WHERE state_id = (SELECT DISTINCT state_id FROM nur_app.state WHERE state_full = '{user_state}')
+  ORDER BY r.undergrad_enrollment DESC
+  LIMIT 5
+  """
+  tab2 = pd.read_sql_query(top_undrgrd, conn) 
+  return tab2
+  
+
 with st.expander(':red[Northeast Selection]', expanded=True):
   ne_states = region_df('Northeast')
   col1, col2 = st.columns([3,3], gap='small')
-  n_rnk = """
-  SELECT n.name,
-  RANK() OVER (ORDER BY rank_num)
-  FROM nur_app.northeast n
-  JOIN nur_app.rank r
-  ON r.id = n.rank_id
-  ORDER BY rank_num
-  LIMIT 3
-  """
+  # n_rnk = """
+  # SELECT n.name,
+  # RANK() OVER (ORDER BY rank_num)
+  # FROM nur_app.northeast n
+  # JOIN nur_app.rank r
+  # ON r.id = n.rank_id
+  # ORDER BY rank_num
+  # LIMIT 3
+  # """
   
-  n_fee = """
-  SELECT n.name, tuition_and_fees
-  FROM nur_app.northeast n
-  JOIN nur_app.rank r
-  ON r.id = n.rank_id
-  ORDER BY tuition_and_fees DESC
-  LIMIT 3
-  """
+  # n_fee = """
+  # SELECT n.name, tuition_and_fees
+  # FROM nur_app.northeast n
+  # JOIN nur_app.rank r
+  # ON r.id = n.rank_id
+  # ORDER BY tuition_and_fees DESC
+  # LIMIT 3
+  # """
   
   with col1:
-    st.plotly_chart(rank_plot(n_rnk), use_container_width=True)
+    st.plotly_chart(rank_plot('northeast'), use_container_width=True)
     
   with col2:
-    st.plotly_chart(fees_plot(n_fee), use_container_width=True)
+    st.plotly_chart(fees_plot('northeast'), use_container_width=True)
   
   user_state = st.selectbox('Select State', ne_states)
   col3, col4 = st.columns([3,3], gap='small')
@@ -210,35 +252,14 @@ with st.expander(':red[Northeast Selection]', expanded=True):
   ORDER BY tuition_and_fees DESC
   LIMIT 3
   """
-  
-  top_in_state = f"""
-  SELECT n.name, r.in_state
-  FROM nur_app.northeast n
-  JOIN nur_app.rank r ON n.rank_id = r.id
-  WHERE state_id = (SELECT DISTINCT state_id FROM nur_app.state WHERE state_full = '{user_state}')
-  ORDER BY r.in_state DESC
-  LIMIT 5
-  """
-
-  top_undrgrd = f"""
-  SELECT n.name, r.undergrad_enrollment
-  FROM nur_app.northeast n
-  JOIN nur_app.rank r ON n.rank_id = r.id
-  WHERE state_id = (SELECT DISTINCT state_id FROM nur_app.state WHERE state_full = '{user_state}')
-  ORDER BY r.undergrad_enrollment DESC
-  LIMIT 5
-  """
-  
-  tab1 = pd.read_sql_query(top_in_state, conn)
-  tab2 = pd.read_sql_query(top_undrgrd, conn) 
 
   with col3:
     st.plotly_chart(inner_rank(top_rank_user_state), use_container_width=True)
-    st.plotly_chart(tab_viz(tab1), use_container_width=True)
+    st.plotly_chart(tab_viz(top_instate_df('northeast')), use_container_width=True)
   
   with col4:
     st.plotly_chart(inner_fees(top_fees_user_state), use_container_width=True)
-    st.plotly_chart(tab_viz(tab2), use_container_width=True)
+    st.plotly_chart(tab_viz(top_undrgrd_df('northeast')), use_container_width=True)
   
 with st.expander(':red[Midwest Selection]', expanded=True):
   mw_states = df_nur[df_nur['region']=='Midwest']['state_full'].unique().tolist() 
