@@ -97,9 +97,9 @@ with st.expander(':red[Top Ranking School]', expanded=True):
     
 with st.expander(':red[Region Search]', expanded=True):
   st.text('Not sure which region you fall into! Insert your state and find out')
-  all_states = df_nur['state'].unique().tolist() 
+  all_states = df_nur['state_full'].unique().tolist() 
   usr_state = st.selectbox('Select State', all_states)
-  state_reg = df_nur[df_nur['state'] == usr_state]['region'].iloc[0]
+  state_reg = df_nur[df_nur['state_full'] == usr_state]['region'].iloc[0]
   st.write(f'{usr_state} is in the {state_reg}')     
 
 def region_df(reg):
