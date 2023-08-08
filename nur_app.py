@@ -221,7 +221,7 @@ def top_undrgrd_df(reg):
   return tab2
   
 all_reg = ['Northeast', 'Midwest', 'South', 'West']
-usr_region = st.selectbox('Select State', all_states) 
+usr_region = st.selectbox('Select Region', all_reg) 
 
 if usr_region == 'Northeast': 
   # NORTHEAST
@@ -245,64 +245,69 @@ if usr_region == 'Northeast':
       st.plotly_chart(inner_fees('northeast'), use_container_width=True)
       st.plotly_chart(tab_viz(top_undrgrd_df('northeast')), use_container_width=True)
 
-# MIDWEST
-with st.expander(':red[Midwest Selection]', expanded=True):
-  mw_states = df_nur[df_nur['region']=='Midwest']['state_full'].unique().tolist() 
-  col1, col2 = st.columns([3,3], gap='small')
+elif usr_region == 'Midwest':
+  # MIDWEST
+  with st.expander(':red[Midwest Selection]', expanded=True):
+    mw_states = df_nur[df_nur['region']=='Midwest']['state_full'].unique().tolist() 
+    col1, col2 = st.columns([3,3], gap='small')
 
-  with col1:
-    st.plotly_chart(rank_plot('midwest'), use_container_width=True)
-  with col2:
-    st.plotly_chart(fees_plot('midwest'), use_container_width=True)
+    with col1:
+      st.plotly_chart(rank_plot('midwest'), use_container_width=True)
+    with col2:
+      st.plotly_chart(fees_plot('midwest'), use_container_width=True)
+      
+    user_state = st.selectbox('Select State', mw_states)
+    col3, col4 = st.columns([3,3], gap='small')
     
-  user_state = st.selectbox('Select State', mw_states)
-  col3, col4 = st.columns([3,3], gap='small')
-  
-  with col3:
-    st.plotly_chart(inner_rank('midwest'), use_container_width=True)
-    st.plotly_chart(tab_viz(top_instate_df('midwest')), use_container_width=True)
-  with col4:
-    st.plotly_chart(inner_fees('midwest'), use_container_width=True)
-    st.plotly_chart(tab_viz(top_undrgrd_df('midwest')), use_container_width=True)
-  
-with st.expander(':red[South Selection]', expanded=True):
-  s_states = df_nur[df_nur['region']=='South']['state_full'].unique().tolist() 
-  col1, col2 = st.columns([3,3], gap='small')
+    with col3:
+      st.plotly_chart(inner_rank('midwest'), use_container_width=True)
+      st.plotly_chart(tab_viz(top_instate_df('midwest')), use_container_width=True)
+    with col4:
+      st.plotly_chart(inner_fees('midwest'), use_container_width=True)
+      st.plotly_chart(tab_viz(top_undrgrd_df('midwest')), use_container_width=True)
 
-  with col1:
-    st.plotly_chart(rank_plot('south'), use_container_width=True)
-  with col2:
-    st.plotly_chart(fees_plot('south'), use_container_width=True)
+elif usr_region == 'South':
+  # SOUTH
+  with st.expander(':red[South Selection]', expanded=True):
+    s_states = df_nur[df_nur['region']=='South']['state_full'].unique().tolist() 
+    col1, col2 = st.columns([3,3], gap='small')
+
+    with col1:
+      st.plotly_chart(rank_plot('south'), use_container_width=True)
+    with col2:
+      st.plotly_chart(fees_plot('south'), use_container_width=True)
+      
+    user_state = st.selectbox('Select State', s_states)
+    col3, col4 = st.columns([3,3], gap='small')
     
-  user_state = st.selectbox('Select State', s_states)
-  col3, col4 = st.columns([3,3], gap='small')
-  
-  with col3:
-    st.plotly_chart(inner_rank('south'), use_container_width=True) 
-    st.plotly_chart(tab_viz(top_instate_df('south')), use_container_width=True)
-  with col4:
-    st.plotly_chart(inner_fees('south'), use_container_width=True)
-    st.plotly_chart(tab_viz(top_undrgrd_df('south')), use_container_width=True)
-  
-with st.expander(':red[West Selection]', expanded=True):
-  w_states = df_nur[df_nur['region']=='West']['state_full'].unique().tolist() 
-  col1, col2 = st.columns([3,3], gap='small')
-  
-  with col1:
-    st.plotly_chart(rank_plot('west'), use_container_width=True)
-  with col2:
-    st.plotly_chart(fees_plot('west'), use_container_width=True)
+    with col3:
+      st.plotly_chart(inner_rank('south'), use_container_width=True) 
+      st.plotly_chart(tab_viz(top_instate_df('south')), use_container_width=True)
+    with col4:
+      st.plotly_chart(inner_fees('south'), use_container_width=True)
+      st.plotly_chart(tab_viz(top_undrgrd_df('south')), use_container_width=True)
+
+elif usr_region == 'West':
+  # WEST
+  with st.expander(':red[West Selection]', expanded=True):
+    w_states = df_nur[df_nur['region']=='West']['state_full'].unique().tolist() 
+    col1, col2 = st.columns([3,3], gap='small')
     
-  user_state = st.selectbox('Select State', w_states)
-  col3, col4 = st.columns([3,3], gap='small')
+    with col1:
+      st.plotly_chart(rank_plot('west'), use_container_width=True)
+    with col2:
+      st.plotly_chart(fees_plot('west'), use_container_width=True)
+      
+    user_state = st.selectbox('Select State', w_states)
+    col3, col4 = st.columns([3,3], gap='small')
 
-  with col3:
-    st.plotly_chart(inner_rank('west'), use_container_width=True)
-    st.plotly_chart(tab_viz(top_instate_df('west')), use_container_width=True)
+    with col3:
+      st.plotly_chart(inner_rank('west'), use_container_width=True)
+      st.plotly_chart(tab_viz(top_instate_df('west')), use_container_width=True)
 
-  with col4:
-    st.plotly_chart(inner_fees('west'), use_container_width=True)   
-    st.plotly_chart(tab_viz(top_undrgrd_df('west')), use_container_width=True)
+    with col4:
+      st.plotly_chart(inner_fees('west'), use_container_width=True)   
+      st.plotly_chart(tab_viz(top_undrgrd_df('west')), use_container_width=True)
 
 with st.expander(':red[School Recommender]', expanded=True):
   st.text('In Progres.......')
