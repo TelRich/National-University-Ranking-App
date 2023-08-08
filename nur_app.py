@@ -21,8 +21,20 @@ with st.expander(':red[PROJECT TITLE]', expanded=True):
   st.markdown("<h1 style='text-align:center;'>National University Rank App</h1>", unsafe_allow_html=True)
   st.markdown("<h3 style='text-align:center;'>Research Idea</h3>", unsafe_allow_html=True)
   st.markdown("""<center>
-  Developing a searchable database to help high school students identify colleges that match 
-  their criteria in terms of tuition, graduation rate, location, and rank.
+In the dynamic landscape of higher education, the quest for the perfect college can be both exciting and bewildering for high school students. 
+Faced with a multitude of options, students often grapple with considerations ranging from tuition expenses and graduation rates to geographical preferences 
+and institutional rankings. To streamline this intricate journey, we have embarked on a mission to develop a streamlined, user-friendly searchable database. 
+Leveraging the power of Streamlit, an innovative framework, we have created an intuitive app that enables students to pinpoint colleges that resonate with their specific criteria.
+
+Recognizing that the decision to pursue higher education is a pivotal life choice, our project goes beyond traditional search capabilities. It aims to serve as a navigational tool, 
+providing tailored guidance to help students traverse the sea of choices and make informed selections. By seamlessly integrating crucial factors such as tuition affordability, 
+graduation rates indicative of institutional commitment, preferred geographic settings, and prestigious rankings, our app offers a comprehensive viewpoint that nurtures each student's aspirations.
+The essence of our app's success lies in Streamlit's capacity to deliver an interactive and dynamic user experience. With its user-centric design philosophy, Streamlit empowers us to create an intuitive 
+interface where students effortlessly input preferences and receive personalized results. Through data visualization and user-friendly controls, we believe our app will become an indispensable 
+asset in the college search, facilitating decision-making and steering students towards institutions where they can flourish academically and personally.
+
+In an age where technology bridges information gaps, our project seeks to leverage this potential for the benefit of education. By merging data-driven insights and an intuitive design, our searchable 
+database, fueled by Streamlit, stands as a beacon of guidance. It aids high school students in charting their path towards a promising future within higher education institutions that resonate with their individual aspirations.
     </center>""", unsafe_allow_html=True)
 
 # App Image
