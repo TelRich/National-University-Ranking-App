@@ -220,26 +220,30 @@ def top_undrgrd_df(reg):
   tab2 = pd.read_sql_query(top_undrgrd, conn) 
   return tab2
   
-# NORTHEAST
+all_reg = ['Northeast', 'Midwest', 'South', 'West']
+usr_region = st.selectbox('Select State', all_states) 
 
-with st.expander(':red[Northeast Selection]', expanded=True):
-  ne_states = region_df('Northeast')
-  col1, col2 = st.columns([3,3], gap='small')
-  
-  with col1:
-    st.plotly_chart(rank_plot('northeast'), use_container_width=True)
-  with col2:
-    st.plotly_chart(fees_plot('northeast'), use_container_width=True)
-  
-  user_state = st.selectbox('Select State', ne_states)
-  col3, col4 = st.columns([3,3], gap='small')
+if usr_region == 'Northeast': 
+  # NORTHEAST
 
-  with col3:
-    st.plotly_chart(inner_rank('northeast'), use_container_width=True)
-    st.plotly_chart(tab_viz(top_instate_df('northeast')), use_container_width=True)
-  with col4:
-    st.plotly_chart(inner_fees('northeast'), use_container_width=True)
-    st.plotly_chart(tab_viz(top_undrgrd_df('northeast')), use_container_width=True)
+  with st.expander(':red[Northeast Selection]', expanded=True):
+    ne_states = region_df('Northeast')
+    col1, col2 = st.columns([3,3], gap='small')
+    
+    with col1:
+      st.plotly_chart(rank_plot('northeast'), use_container_width=True)
+    with col2:
+      st.plotly_chart(fees_plot('northeast'), use_container_width=True)
+    
+    user_state = st.selectbox('Select State', ne_states)
+    col3, col4 = st.columns([3,3], gap='small')
+
+    with col3:
+      st.plotly_chart(inner_rank('northeast'), use_container_width=True)
+      st.plotly_chart(tab_viz(top_instate_df('northeast')), use_container_width=True)
+    with col4:
+      st.plotly_chart(inner_fees('northeast'), use_container_width=True)
+      st.plotly_chart(tab_viz(top_undrgrd_df('northeast')), use_container_width=True)
 
 # MIDWEST
 with st.expander(':red[Midwest Selection]', expanded=True):
