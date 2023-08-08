@@ -11,6 +11,7 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import psycopg2
+import streamlit.components.v1 as components
 
 # Setting th epage size and title
 st.set_page_config(layout='wide', page_title='National University Rank App')
@@ -309,9 +310,11 @@ elif usr_region == 'West':
       st.plotly_chart(inner_fees('west'), use_container_width=True)   
       st.plotly_chart(tab_viz(top_undrgrd_df('west')), use_container_width=True)
 
+with st.expander(':red[Power BI]', expanded=True):
+  power = """<iframe title="Report Section" width="1000" height="1000" 
+              src="https://app.powerbi.com/view?r=eyJrIjoiYTFlZTIwZGQtYzA4NS00YTNiLWJkZGEtZTQ3MmNjMWIyNmI1IiwidCI6ImNlMzBlNGMzLWM4NjItNGVlZC1hMzdjLWU3NmJjODNhY2ZmYSJ9" 
+              frameborder="0" allowFullScreen="true"></iframe>"""
+  components.html(power, height=600, width=1000)
+
 with st.expander(':red[School Recommender]', expanded=True):
   st.text('In Progres.......')
-
-import streamlit.components.v1 as components
-power = """<iframe title="Report Section" width="1000" height="1000" src="https://app.powerbi.com/view?r=eyJrIjoiYTFlZTIwZGQtYzA4NS00YTNiLWJkZGEtZTQ3MmNjMWIyNmI1IiwidCI6ImNlMzBlNGMzLWM4NjItNGVlZC1hMzdjLWU3NmJjODNhY2ZmYSJ9" frameborder="0" allowFullScreen="true"></iframe>"""
-components.html(power, height=600, width=1000)
