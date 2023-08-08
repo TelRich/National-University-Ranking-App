@@ -19,7 +19,7 @@ st.set_page_config(layout='wide', page_title='National University Rank App')
 # App Setup
 with st.expander(':red[PROJECT TITLE]', expanded=True):
   st.markdown("<h1 style='text-align:center;'>National University Rank App</h1>", unsafe_allow_html=True)
-  st.markdown("<h3 style='text-align:center;'>Research Idea</h3>", unsafe_allow_html=True)
+  st.markdown("<h3 style='text-align:center;'>Introduction</h3>", unsafe_allow_html=True)
   st.markdown("""<center>
 In the dynamic landscape of higher education, the quest for the perfect college can be both exciting and bewildering for high school students. 
 Faced with a multitude of options, students often grapple with considerations ranging from tuition expenses and graduation rates to geographical preferences 
