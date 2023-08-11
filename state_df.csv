@@ -1,0 +1,52 @@
+state_id,state_full,region
+NJ,New Jersey,Northeast
+MA,Massachusetts,Northeast
+IL,Illinois,Midwest
+CT,Connecticut,Northeast
+NY,New York,Northeast
+CA,California,West
+NC,North Carolina,South
+PA,Pennsylvania,Northeast
+MD,Maryland,South
+NH,New Hampshire,Northeast
+RI,Rhode Island,Northeast
+TX,Texas,South
+IN,Indiana,Midwest
+TN,Tennessee,South
+MO,Missouri,Midwest
+GA,Georgia,South
+DC,District of Columbia,South
+VA,Virginia,South
+MI,Michigan,Midwest
+OH,Ohio,Midwest
+LA,Louisiana,South
+FL,Florida,South
+WI,Wisconsin,Midwest
+WA,Washington,West
+SC,South Carolina,South
+UT,Utah,West
+MN,Minnesota,Midwest
+DE,Delaware,Northeast
+CO,Colorado,West
+IA,Iowa,Midwest
+OK,Oklahoma,South
+VT,Vermont,Northeast
+AL,Alabama,South
+OR,Oregon,West
+NE,Nebraska,Midwest
+KS,Kansas,Midwest
+AZ,Arizona,West
+KY,Kentucky,South
+AR,Arkansas,South
+MS,Mississippi,Northeast
+HI,Hawaii,West
+ID,Idaho,West
+WY,Wyoming,West
+NM,New Mexico,West
+ME,Maine,Northeast
+WV,West Virginia,South
+ND,North Dakota,Midwest
+NV,Nevada,West
+SD,South Dakota,Midwest
+AK,Alaska,West
+MT,Montana,West
