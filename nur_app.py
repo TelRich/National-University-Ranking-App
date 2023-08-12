@@ -112,7 +112,7 @@ with st.expander(':red[Region Search]', expanded=True):
   all_states = df_nur['state_full'].unique().tolist() 
   usr_state = st.selectbox('Select State', all_states)
   state_reg = df_nur[df_nur['state_full'] == usr_state]['region'].iloc[0]
-  st.write(f'{usr_state} is in the {state_reg}')     
+  st.write(f'{usr_state} is in the {state_reg} region')     
 
 def region_df(reg):
   reg_fil = df_nur[df_nur['region']==reg]['state_full'].unique().tolist()
