@@ -86,10 +86,10 @@ fig2.update_layout(xaxis={"categoryorder": "total descending"}, title_text="Top 
 fig2.update_yaxes(showticklabels=False)
 fig2.update_traces(textfont_color=text_color)
 
-top_ins = df_nur.sort_values(by='in_state', ascending=False)[:3]
-fig3 = px.bar(top_ins, x="in_state", y="name", text_auto=True,height=400, width=550, color_discrete_sequence=px.colors.qualitative.Vivid,
-             labels={'name':'', 'in_state': ''}, title="Top Universities by In-State fees")
-fig3.update_xaxes(showticklabels=False)
+reg_cnt = df_nur['region'].value_counts().sort_values().to_frame()
+fig3 = px.bar(reg_cnt, x=reg_cnt.index, y="region", text_auto=True,height=400, width=550,
+             labels={'region':'', 'index': ''}, title="School Count by Region", color_discrete_sequence=px.colors.qualitative.Vivid)
+fig3.update_yaxes(showticklabels=False)
 fig3.update_traces(textfont_color=text_color)
 
 top_ins = df_nur[df_nur['year'] != 0].sort_values(by='year')[:3]
@@ -102,10 +102,10 @@ with st.expander(':red[Top Ranking School]', expanded=True):
   col1, col2 = st.columns([3,3], gap='small')
   with col1:
     st.plotly_chart(fig1, use_container_width=True)
-    # st.plotly_chart(fig3, use_container_width=True)  
+    st.plotly_chart(fig3, use_container_width=True)  
   with col2:
     st.plotly_chart(fig2, use_container_width=True)
-    # st.plotly_chart(fig4, use_container_width=True)
+    st.plotly_chart(fig4, use_container_width=True)
     
 with st.expander(':red[Region Search]', expanded=True):
   st.text('Not sure which region you fall into! Insert your state and find out')
