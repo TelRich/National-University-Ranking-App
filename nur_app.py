@@ -86,7 +86,8 @@ fig2.update_layout(xaxis={"categoryorder": "total descending"}, title_text="Top 
 fig2.update_yaxes(showticklabels=False)
 fig2.update_traces(textfont_color=text_color)
 
-# reg_cnt = df_nur['region'].value_counts().sort_values().to_frame()
+reg_cnt = df_nur['region'].value_counts().sort_values().to_frame()
+reg_cnt
 # fig3 = px.bar(reg_cnt, x=reg_cnt.index, y="region", text_auto=True,height=400, width=550,
 #              labels={'region':'', 'index': ''}, title="School Count by Region", color_discrete_sequence=px.colors.qualitative.Vivid)
 # fig3.update_yaxes(showticklabels=False)
