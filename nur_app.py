@@ -87,11 +87,10 @@ fig2.update_yaxes(showticklabels=False)
 fig2.update_traces(textfont_color=text_color)
 
 reg_cnt = df_nur['region'].value_counts().sort_values().to_frame()
-reg_cnt
-# fig3 = px.bar(reg_cnt, x=reg_cnt.index, y="region", text_auto=True,height=400, width=550,
-#              labels={'region':'', 'index': ''}, title="School Count by Region", color_discrete_sequence=px.colors.qualitative.Vivid)
-# fig3.update_yaxes(showticklabels=False)
-# fig3.update_traces(textfont_color=text_color)
+fig3 = px.bar(reg_cnt, x=reg_cnt.index, y="count", text_auto=True,height=400, width=550,
+             labels={'count':'', 'index': ''}, title="School Count by Region", color_discrete_sequence=px.colors.qualitative.Vivid)
+fig3.update_yaxes(showticklabels=False)
+fig3.update_traces(textfont_color=text_color)
 
 top_ins = df_nur[df_nur['year'] != 0].sort_values(by='year')[:3]
 fig4 = px.bar(top_ins, y="year", x="name", text_auto=True,height=400, width=550, color_discrete_sequence=px.colors.qualitative.Vivid,
