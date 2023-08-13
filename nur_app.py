@@ -102,7 +102,7 @@ with st.expander(':red[Top Ranking School]', expanded=True):
   col1, col2 = st.columns([3,3], gap='small')
   with col1:
     st.plotly_chart(fig1, use_container_width=True)
-    # st.plotly_chart(fig3, use_container_width=True)  
+    st.plotly_chart(fig3, use_container_width=True)  
   with col2:
     st.plotly_chart(fig2, use_container_width=True)
     st.plotly_chart(fig4, use_container_width=True)
