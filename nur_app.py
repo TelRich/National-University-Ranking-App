@@ -325,7 +325,7 @@ with st.expander(':red[Power BI]', expanded=True):
   power = """<iframe title="Report Section" width="1000" height="1000" 
               src="https://app.powerbi.com/view?r=eyJrIjoiYTFlZTIwZGQtYzA4NS00YTNiLWJkZGEtZTQ3MmNjMWIyNmI1IiwidCI6ImNlMzBlNGMzLWM4NjItNGVlZC1hMzdjLWU3NmJjODNhY2ZmYSJ9" 
               frameborder="0" allowFullScreen="true"></iframe>"""
-  components.html(power, height=700, width=1300)
+  components.html(power, height=600, width=1800)
 
 with st.expander(':red[School Recommender]', expanded=True):
   st.text('In Progres.......')
