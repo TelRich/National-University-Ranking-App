@@ -43,13 +43,6 @@ st.markdown("""
 </p>
 """, unsafe_allow_html=True)
 
-# App External Links
-st.sidebar.markdown("""
-                    # [**Project Link**](https://national-university-ranking-app.streamlit.app/)
-                    # [**Project Article**](https://github.com/users/TelRich/projects/5)
-                    # [**Project Outline**](https://github.com/users/TelRich/projects/5)
-                    """)
-
 # FUnction to load the cleaned data
 @st.cache_data
 def load_data():
@@ -336,3 +329,11 @@ with st.expander(':red[Power BI Report]', expanded=True):
 
 with st.expander(':red[School Recommender]', expanded=True):
   st.text('In Progres.......')
+  
+with st.expander(':red[School Recommender]', expanded=True):
+# App External Links
+  st.markdown("""
+                # [**Project Link**](https://national-university-ranking-app.streamlit.app/)
+                # [**Project Article**](https://github.com/users/TelRich/projects/5)
+                # [**Project Outline**](https://github.com/users/TelRich/projects/5)
+                """)
