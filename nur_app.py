@@ -318,7 +318,7 @@ with st.expander(':red[Power BI Map]', expanded=True):
   power = """<iframe title="Report Section" width="1500" height="1200" 
               src="https://app.powerbi.com/view?r=eyJrIjoiYTFlZTIwZGQtYzA4NS00YTNiLWJkZGEtZTQ3MmNjMWIyNmI1IiwidCI6ImNlMzBlNGMzLWM4NjItNGVlZC1hMzdjLWU3NmJjODNhY2ZmYSJ9" 
               frameborder="0" allowFullScreen="true"></iframe>"""
-  components.html(power, height=1000, width=1800)
+  components.html(power, height=800, width=1800)
 
 with st.expander(':red[Power BI Report]', expanded=True):
   power = """<iframe title="Report Section" width="1500" height="1300" 
