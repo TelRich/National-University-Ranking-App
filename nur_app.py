@@ -321,10 +321,17 @@ elif usr_region == 'West':
       st.plotly_chart(inner_fees('west'), use_container_width=True)   
       st.plotly_chart(tab_viz(top_undrgrd_df('west')), use_container_width=True)
 
-with st.expander(':red[Power BI]', expanded=True):
+with st.expander(':red[Power BI Map]', expanded=True):
   power = """<iframe title="Report Section" width="1000" height="1000" 
               src="https://app.powerbi.com/view?r=eyJrIjoiYTFlZTIwZGQtYzA4NS00YTNiLWJkZGEtZTQ3MmNjMWIyNmI1IiwidCI6ImNlMzBlNGMzLWM4NjItNGVlZC1hMzdjLWU3NmJjODNhY2ZmYSJ9" 
               frameborder="0" allowFullScreen="true"></iframe>"""
+  components.html(power, height=600, width=1800)
+
+with st.expander(':red[Power BI Report]', expanded=True):
+  power = """<iframe title="Report Section" width="1000" height="1000" 
+              src="https://app.powerbi.com/view?r=eyJrIjoiYTIyZWYyY2YtMWFmZS00MTllLWJmNzItMWMwYTRkZmRmOTIwIiwidCI6ImNlMzBlNGMzLWM4NjItNGVlZC1hMzdjLWU3NmJjODNhY2ZmYSJ9" 
+              frameborder="0" allowFullScreen="true"></iframe>"""
+
   components.html(power, height=600, width=1800)
 
 with st.expander(':red[School Recommender]', expanded=True):
