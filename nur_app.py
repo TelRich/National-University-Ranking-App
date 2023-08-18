@@ -79,11 +79,11 @@ fig2.update_layout(xaxis={"categoryorder": "total descending"}, title_text="Top 
 fig2.update_yaxes(showticklabels=False)
 fig2.update_traces(textfont_color=text_color)
 
-# reg_cnt = df_nur['region'].value_counts().sort_values().to_frame()
-# fig3 = px.bar(reg_cnt, x=reg_cnt.index, y="count", text_auto=True,height=400, width=550,
-#              labels={'count':'', 'index': ''}, title="School Count by Region", color_discrete_sequence=px.colors.qualitative.Vivid)
-# fig3.update_yaxes(showticklabels=False)
-# fig3.update_traces(textfont_color=text_color)
+reg_cnt = df_nur['region'].value_counts().sort_values().to_frame()
+fig3 = px.bar(reg_cnt, x=reg_cnt.index, y="count", text_auto=True,height=400, width=550,
+             labels={'count':'', 'index': ''}, title="School Count by Region", color_discrete_sequence=px.colors.qualitative.Vivid)
+fig3.update_yaxes(showticklabels=False)
+fig3.update_traces(textfont_color=text_color)
 
 top_ins = df_nur[df_nur['year'] != 0].sort_values(by='year')[:3]
 fig4 = px.bar(top_ins, y="year", x="name", text_auto=True,height=400, width=550, color_discrete_sequence=px.colors.qualitative.Vivid,
@@ -95,7 +95,7 @@ with st.expander(':red[Top Ranking School]', expanded=True):
   col1, col2 = st.columns([3,3], gap='small')
   with col1:
     st.plotly_chart(fig1, use_container_width=True)
-    # st.plotly_chart(fig3, use_container_width=True)  
+    st.plotly_chart(fig3, use_container_width=True)  
   with col2:
     st.plotly_chart(fig2, use_container_width=True)
     st.plotly_chart(fig4, use_container_width=True)
@@ -245,10 +245,10 @@ if usr_region == 'Northeast':
 
     with col3:
       st.plotly_chart(inner_rank('northeast'), use_container_width=True)
-      st.plotly_chart(tab_viz(top_instate_df('northeast')), use_container_width=True)
+      # st.plotly_chart(tab_viz(top_instate_df('northeast')), use_container_width=True)
     with col4:
       st.plotly_chart(inner_fees('northeast'), use_container_width=True)
-      st.plotly_chart(tab_viz(top_undrgrd_df('northeast')), use_container_width=True)
+      # st.plotly_chart(tab_viz(top_undrgrd_df('northeast')), use_container_width=True)
 
 elif usr_region == 'Midwest':
   # MIDWEST
@@ -266,10 +266,10 @@ elif usr_region == 'Midwest':
     
     with col3:
       st.plotly_chart(inner_rank('midwest'), use_container_width=True)
-      st.plotly_chart(tab_viz(top_instate_df('midwest')), use_container_width=True)
+      # st.plotly_chart(tab_viz(top_instate_df('midwest')), use_container_width=True)
     with col4:
       st.plotly_chart(inner_fees('midwest'), use_container_width=True)
-      st.plotly_chart(tab_viz(top_undrgrd_df('midwest')), use_container_width=True)
+      # st.plotly_chart(tab_viz(top_undrgrd_df('midwest')), use_container_width=True)
 
 elif usr_region == 'South':
   # SOUTH
@@ -287,10 +287,10 @@ elif usr_region == 'South':
     
     with col3:
       st.plotly_chart(inner_rank('south'), use_container_width=True) 
-      st.plotly_chart(tab_viz(top_instate_df('south')), use_container_width=True)
+      # st.plotly_chart(tab_viz(top_instate_df('south')), use_container_width=True)
     with col4:
       st.plotly_chart(inner_fees('south'), use_container_width=True)
-      st.plotly_chart(tab_viz(top_undrgrd_df('south')), use_container_width=True)
+      # st.plotly_chart(tab_viz(top_undrgrd_df('south')), use_container_width=True)
 
 elif usr_region == 'West':
   # WEST
@@ -308,11 +308,11 @@ elif usr_region == 'West':
 
     with col3:
       st.plotly_chart(inner_rank('west'), use_container_width=True)
-      st.plotly_chart(tab_viz(top_instate_df('west')), use_container_width=True)
+      # st.plotly_chart(tab_viz(top_instate_df('west')), use_container_width=True)
 
     with col4:
       st.plotly_chart(inner_fees('west'), use_container_width=True)   
-      st.plotly_chart(tab_viz(top_undrgrd_df('west')), use_container_width=True)
+      # st.plotly_chart(tab_viz(top_undrgrd_df('west')), use_container_width=True)
 
 with st.expander(':red[Power BI Map]', expanded=True):
   power = """<iframe title="Report Section" width="1400" height="1200" 
@@ -330,7 +330,7 @@ with st.expander(':red[Power BI Report]', expanded=True):
 with st.expander(':red[School Recommender]', expanded=True):
   st.text('In Progres.......')
   
-with st.expander(':red[School Recommender]', expanded=True):
+with st.expander(':red[External Links]', expanded=True):
 # App External Links
   st.markdown("""
                 # [**Project Link**](https://national-university-ranking-app.streamlit.app/)
