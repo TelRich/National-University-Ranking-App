@@ -86,11 +86,11 @@ fig2.update_layout(xaxis={"categoryorder": "total descending"}, title_text="Top 
 fig2.update_yaxes(showticklabels=False)
 fig2.update_traces(textfont_color=text_color)
 
-reg_cnt = df_nur['region'].value_counts().sort_values().to_frame()
-fig3 = px.bar(reg_cnt, x=reg_cnt.index, y="count", text_auto=True,height=400, width=550,
-             labels={'count':'', 'index': ''}, title="School Count by Region", color_discrete_sequence=px.colors.qualitative.Vivid)
-fig3.update_yaxes(showticklabels=False)
-fig3.update_traces(textfont_color=text_color)
+# reg_cnt = df_nur['region'].value_counts().sort_values().to_frame()
+# fig3 = px.bar(reg_cnt, x=reg_cnt.index, y="count", text_auto=True,height=400, width=550,
+#              labels={'count':'', 'index': ''}, title="School Count by Region", color_discrete_sequence=px.colors.qualitative.Vivid)
+# fig3.update_yaxes(showticklabels=False)
+# fig3.update_traces(textfont_color=text_color)
 
 top_ins = df_nur[df_nur['year'] != 0].sort_values(by='year')[:3]
 fig4 = px.bar(top_ins, y="year", x="name", text_auto=True,height=400, width=550, color_discrete_sequence=px.colors.qualitative.Vivid,
@@ -102,7 +102,7 @@ with st.expander(':red[Top Ranking School]', expanded=True):
   col1, col2 = st.columns([3,3], gap='small')
   with col1:
     st.plotly_chart(fig1, use_container_width=True)
-    st.plotly_chart(fig3, use_container_width=True)  
+    # st.plotly_chart(fig3, use_container_width=True)  
   with col2:
     st.plotly_chart(fig2, use_container_width=True)
     st.plotly_chart(fig4, use_container_width=True)
@@ -328,11 +328,11 @@ with st.expander(':red[Power BI Map]', expanded=True):
   components.html(power, height=600, width=1800)
 
 with st.expander(':red[Power BI Report]', expanded=True):
-  power = """<iframe title="Report Section" width="1000" height="1000" 
+  power = """<iframe title="Report Section" width="1500" height="1350" 
               src="https://app.powerbi.com/view?r=eyJrIjoiYTIyZWYyY2YtMWFmZS00MTllLWJmNzItMWMwYTRkZmRmOTIwIiwidCI6ImNlMzBlNGMzLWM4NjItNGVlZC1hMzdjLWU3NmJjODNhY2ZmYSJ9" 
               frameborder="0" allowFullScreen="true"></iframe>"""
 
-  components.html(power, height=600, width=1800)
+  components.html(power, height=1500, width=2000)
 
 with st.expander(':red[School Recommender]', expanded=True):
   st.text('In Progres.......')
