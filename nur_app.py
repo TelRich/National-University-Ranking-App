@@ -324,7 +324,6 @@ with st.expander(':red[Power BI Report]', expanded=True):
   power = """<iframe title="Report Section" width="1400" height="1300" 
               src="https://app.powerbi.com/view?r=eyJrIjoiYTIyZWYyY2YtMWFmZS00MTllLWJmNzItMWMwYTRkZmRmOTIwIiwidCI6ImNlMzBlNGMzLWM4NjItNGVlZC1hMzdjLWU3NmJjODNhY2ZmYSJ9" 
               frameborder="0" allowFullScreen="true"></iframe>"""
-
   components.html(power, height=1280, width=1450)
 
 with st.expander(':red[School Recommender]', expanded=True):
