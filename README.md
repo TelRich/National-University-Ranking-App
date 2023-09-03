@@ -2,7 +2,7 @@
 
 # [App Link](https://nur-app.streamlit.app/)
 
-# [View Project Notebook](https://nbviewer.org/github/TelRich/National-University-Ranking-App/blob/nur_main/nur.ipynb?flush_cache=True)
+# [View Project Notebook](https://nbviewer.org/github/TelRich/National-University-Ranking-App/blob/nur_main/nur_cleaned.ipynb?flush_cache=True)
 
 
 ![](images/intro_pic.png)
@@ -54,7 +54,7 @@ This Python script implements a Streamlit web application called the "National U
 ### External Links:
 
 - [**Project App**](https://nur-app.streamlit.app/): Access the live web app.
-- [**Project Notebook**](https://nbviewer.org/github/TelRich/National-University-Ranking-App/blob/nur_main/nur.ipynb?flush_cache=True): Read the project article for more details.
+- [**Project Notebook**](https://nbviewer.org/github/TelRich/National-University-Ranking-App/blob/nur_main/nur_cleaned.ipynb?flush_cache=True): Read the project article for more details.
 - [**Project Outline**](https://github.com/users/TelRich/projects/5): Explore the project outline on GitHub.
 
 ---
