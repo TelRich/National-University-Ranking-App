@@ -8,10 +8,7 @@
 ![](images/intro_pic.png)
 
 ---
-
-## National University Rank App
-
-This Python script implements a Streamlit web application called the "National University Rank App." The app is designed to help high school students and prospective college applicants search for and explore information about universities in the United States. It provides various features and functionalities to assist users in making informed decisions about their higher education choices.
+This Project implements a Streamlit web application called the "National University Rank App." The app is designed to help high school students and prospective college applicants search for and explore information about universities in the United States. It provides various features and functionalities to assist users in making informed decisions about their higher education choices.
 
 ### Key Features:
 
